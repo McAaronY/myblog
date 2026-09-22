@@ -1,6 +1,6 @@
 ---
 title: 用 Chirpy 搭建博客的几处关键配置
-date: 2026-09-22 15:30 +0800
+date: 2026-09-22 08:00 +0800
 categories: [Blog, Jekyll]
 tags: [chirpy, jekyll, github-pages]
 ---

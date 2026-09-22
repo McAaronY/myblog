@@ -38,6 +38,7 @@
 - [x] 7. 新增 `assets/img/avatar.svg`
 - [x] 8. `Gemfile` 增加 `tzinfo`（Linux/macOS MRI 时区支持）
 - [x] 9. 更新 `README.md`（结构说明、本地预览、常见坑）
+- [x] 13. 提交 `f612ec9` 并推送到 GitHub（走 SSH，见异常 3），等待 Actions 部署后由用户验证
 
 ### 待测试 / 验证
 
@@ -57,3 +58,4 @@
 | --- | --- | --- | --- |
 | 1 | 2026-09-22 | 本机无 Ruby 3.x，无法运行 `bundle exec jekyll build` 做构建校验 | 改为静态校验（YAML front matter / Liquid 变量名 / 与主题 v7.6.0 文件结构逐字比对）+ 云端 CI 验证 |
 | 2 | 2026-09-22 | `github.com`、`rubygems.org` 直连超时，仅 `api.github.com` 可用 | 通过 GitHub Contents API 读取主题 v7.6.0 源码做规范比对，不下载/安装任何软件 |
+| 3 | 2026-09-22 | **推送失败**：`git push` 报 `Failed to connect to github.com port 443`。原因：`/etc/hosts` 里有 2026-07-20 生成的 GitHub 加速条目，但**缺少 `github.com` 本身**，解析到 20.205.243.166 且 443 端口不互通（已验证 4 个候选 IP 均 000）；`api.github.com`/`codeload.github.com` 因 hosts 里有映射而正常 | 不改系统文件、不关 TLS 校验；改用已验证可用的 SSH 通道一次性推送：`git push git@github.com:McAaronY/myblog.git main:main`（origin 保持 https 不变）。预防措施：让 GitHub 加速工具重新生成 hosts（需用户 sudo），或将 origin 改为 `git@github.com:McAaronY/myblog.git`（需用户确认） |

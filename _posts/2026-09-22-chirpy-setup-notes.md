@@ -1,8 +1,8 @@
 ---
 title: 用 Chirpy 搭建博客的几处关键配置
 date: 2026-09-22 08:00 +0800
-categories: [Blog,简历]
-tags: [github-pages,resume-cn]
+categories: [Blog]
+tags: [github-pages]
 ---
 
 本站基于 [Chirpy](https://github.com/cotes2020/jekyll-theme-chirpy){:target="_blank" rel="noopener"}

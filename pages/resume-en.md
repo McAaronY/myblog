@@ -3,6 +3,8 @@ title: Resume
 lang: en
 layout: page
 permalink: /resume-en/
+categories: [简历]
+tags: [resume]
 ---
 
 <div>

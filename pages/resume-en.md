@@ -5,6 +5,10 @@ layout: page
 permalink: /resume-en/
 ---
 
+<div>
+   <a href="/resume/">中文版本</a>
+</div>
+
 ### (yyl)Aaron
 
 📞  18300072xxxx                                       

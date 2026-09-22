@@ -4,6 +4,9 @@ icon: fas fa-id-card
 order: 5
 ---
 
+<div>
+   <a href="/resume-en/">English</a>
+</div>
 
 ### 杨生
 

@@ -4,14 +4,27 @@ layout: page
 permalink: /resume/
 ---
 <style>
-/* 这里直接写简历页面专属CSS，单独控制简历排版 */
-.resume-section{margin:1.2rem 0;}
-</style>
-# 中文简历正文
-[English Version](/resume/)
-# 简历
+.resume-wrap {
+  max-width: 820px;
+  margin: 2rem auto;
+}
+h2 {
+  border-bottom:1px solid #eee;
+  padding-bottom: 0.3rem;
+}
+.lang-switch{
+  text-align:right;
+  margin-bottom:2rem;
+}
 
-### 杨运励
+</style>
+
+<div class="resume-wrap">
+<div class="lang-switch">
+<a href="/resume-en/">English Version</a>
+</div>
+
+### 杨生
 
 📍 深圳 / 珠海 / 东莞/中山
 
@@ -142,3 +155,4 @@ permalink: /resume/
 - 职业目标：持续深耕 Java 平台与分布式场景，向高可用、高性能与平台化方向发展
 
 ---
+</div>

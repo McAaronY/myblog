@@ -1,15 +1,28 @@
 ---
-title: 个人简历
+title: Resume
 layout: page
 permalink: /resume-en/
 ---
+
 <style>
-/* 这里直接写简历页面专属CSS，单独控制简历排版 */
-.resume-section{margin:1.2rem 0;}
+.resume-wrap {
+  max-width: 820px;
+  margin: 2rem auto;
+  font-family: 'Roboto', sans-serif;
+}
+h2 {
+  border-bottom:1px solid #eee;
+  padding-bottom: 0.3rem;
+}
+.lang-switch{
+  text-align:right;
+  margin-bottom:2rem;
+}
 </style>
-# 英文简历正文
-[English Version](/resume-en/)
-# resume
+<div class="resume-wrap">
+<div class="lang-switch">
+<a href="/resume/">中文版本</a>
+</div>
 
 ### (yyl)Aaron
 
@@ -56,3 +69,4 @@ I am a highly skilled full-stack software engineer with a strong background in d
 | Programming Languages | Frameworks | Tools |
 | --- | --- | --- |
 | Java, Python, JavaScript | Spring Boot, Django, React | Git, PostgreSQL, Docker |
+</div>

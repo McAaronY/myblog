@@ -1,0 +1,31 @@
+---
+---
+
+# =============================================================================
+# 站点自定义样式入口（覆盖主题同名文件：assets/css/jekyll-theme-chirpy.scss）
+#
+# 原理：Jekyll 4 中「站点文件优先于 gem 主题文件」。主题 head.html 通过
+#       `/assets/css/:THEME.css`（:THEME => site.theme）引入样式表，
+#       因此只要在此路径放置同名 .scss 文件，即可接管整站样式表。
+#
+# 本文件与主题 v7.6.0 的原文件逐字一致，仅在末尾追加站点自己的样式模块，
+# 主题升级时（除入口文件本身变化外）无需改动。
+#
+# 加载顺序 = CSS 输出顺序：variables(无样式) -> main(.bundle 主题全量) -> append(自定义)
+# 因此 _sass/append.scss 内与主题同等优先级的规则可以稳定覆盖主题。
+# =============================================================================
+
+@use 'abstracts/variables' with (
+  $theme: '{{ site.theme_mode }}'
+);
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* append your custom style below */
+
+@use 'append';

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="224" height="224" viewBox="0 0 224 224" role="img" aria-label="Aaron">
+  <!--
+    侧栏头像占位图（site.avatar -> /assets/img/avatar.svg）
+    换成真实照片时：把文件放到 assets/img/avatar.png，并修改 _config.yml 的 avatar 值。
+  -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5b7fa6"/>
+      <stop offset="1" stop-color="#2f3f52"/>
+    </linearGradient>
+  </defs>
+  <circle cx="112" cy="112" r="112" fill="url(#bg)"/>
+  <text x="112" y="112" dy="18" text-anchor="middle"
+        font-family="Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif"
+        font-size="96" font-weight="700" fill="#ffffff">A</text>
+</svg>

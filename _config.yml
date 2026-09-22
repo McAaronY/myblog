@@ -6,41 +6,41 @@ theme: jekyll-theme-chirpy
 # The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
 # If it has the same name as one of the files in folder `_data/locales`, the layout language will also be changed,
 # otherwise, the layout language will use the default value of 'en'.
-lang: en
+lang: zh-CN
 
 # Change to your timezone › https://zones.arilyn.cc
-timezone:
+# Requires the `tzinfo` gem (see Gemfile), otherwise dates are rendered in UTC.
+timezone: Asia/Shanghai
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
 title: Aaron(Yang) # the main title
 
-tagline: 这是一个有趣的个人博客网站# it will display as the subtitle
+tagline: 这是一个有趣的个人博客网站 # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  A minimal, responsive and feature-rich Jekyll theme for technical writing.
+  Aaron 的个人博客 —— Java 全栈开发、企业级系统运维与 AI 应用实践笔记。
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
 
-url: ""
+url: "https://mcaarony.github.io"
 
 github:
-  username: github_username # change to your GitHub username
+  username: McAaronY # change to your GitHub username
 
 twitter:
-  username: twitter_username # change to your Twitter username
+  username: # change to your Twitter username (empty = hide the icon in sidebar)
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: Aaron(Yang)
-  email: yyi.yangyunli@gmail.com # change to your email address
+  email: yyi.yangyunli@gmail.com
   fediverse_handle: # fill in your fediverse handle. E.g. "@username@domain.com"
   links:
-    - https://github.com/McAaronY # 第一条！底部版权会读取这个链接
-    - https://twitter.com/username
+    - https://github.com/McAaronY # the first link is used as the copyright link in the footer
 # Site Verification Settings
 webmaster_verifications:
   google: # fill in your Google verification code
@@ -95,7 +95,8 @@ theme_mode: # [light | dark]
 cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+# TODO: 替换为真实头像（建议 112x112 以上的正方形 png/jpg）
+avatar: /assets/img/avatar.svg
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
@@ -157,7 +158,11 @@ pwa:
 paginate: 10
 
 # The base URL of your site
-baseurl: ""
+#
+# 站点部署在 GitHub「项目页」https://mcaarony.github.io/myblog/ ，
+# 因此必须带仓库名前缀，否则 /assets/** 全部 404（页面丢失样式）。
+# 若将来改用独立域名（新增 CNAME），把这里改回 ""。
+baseurl: "/myblog"
 
 # ------------ The following options are not recommended to be modified ------------------
 

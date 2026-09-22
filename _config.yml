@@ -162,7 +162,7 @@ paginate: 10
 # 站点部署在 GitHub「项目页」https://mcaarony.github.io/myblog/ ，
 # 因此必须带仓库名前缀，否则 /assets/** 全部 404（页面丢失样式）。
 # 若将来改用独立域名（新增 CNAME），把这里改回 ""。
-baseurl: "/myblog"
+baseurl: ""
 
 # ------------ The following options are not recommended to be modified ------------------
 

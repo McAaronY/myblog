@@ -1,7 +1,7 @@
 ---
 title: 关于AI-Agent的话题
 date: 2026-09-22 19:00 +0800
-categories: [Blog]
+categories: [AI]
 tags: [Agent]
 ---
 

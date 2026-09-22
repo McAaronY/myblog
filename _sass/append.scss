@@ -14,9 +14,11 @@
 
 :root {
   /* 拉丁字体沿用主题（Source Sans Pro / Lato），中文字体按平台取最优回退 */
-  --site-font-cjk: 'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans SC', 'Noto Sans CJK SC',
+  --site-font-cjk:
+    'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans SC', 'Noto Sans CJK SC',
     'Microsoft YaHei', sans-serif;
-  --site-font-mono-cjk: 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Courier New',
+  --site-font-mono-cjk:
+    'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Courier New',
     'Microsoft YaHei', monospace;
 }
 
@@ -299,6 +301,9 @@ blockquote[class^='prompt-'] > p {
     tr {
       break-inside: avoid;
     }
+  }
+  #btn-change {
+    display: none;
   }
 }
 

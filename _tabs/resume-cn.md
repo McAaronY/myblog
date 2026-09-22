@@ -4,7 +4,7 @@ icon: fas fa-id-card
 order: 5
 ---
 
-<div>
+<div id="btn-change">
    <a href="/resume-en/">English</a>
 </div>
 

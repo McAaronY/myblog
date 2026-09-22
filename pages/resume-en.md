@@ -5,7 +5,7 @@ layout: page
 permalink: /resume-en/
 ---
 
-<div>
+<div id="btn-change">
    <a href="/resume-cn/">中文版本</a>
 </div>
 
@@ -22,8 +22,6 @@ permalink: /resume-en/
 🧘🏻 full-stack software engineer
 
 ---
-
-### Education
 
 ### Education
 

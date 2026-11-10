@@ -5,7 +5,106 @@ categories: [AI]
 tags: [免费的大模型]
 ---
 
-## 模型的大模型
+
+
+
+
+### 模型的大模型
+
+### modelscope
+> 阿里云的魔塔
+1. 注册官网 [地址](https://modelscope.cn/)
+2. 准备一个邮箱即可以
+3. 登录申请apikey
+4. 调用模型例子
+
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+  base_url = "https://api-inference.modelscope.cn/v1",
+  api_key = os.environ["apiKey"]
+)
+
+
+completion = client.chat.completions.create(
+  model="deepseek-ai/DeepSeek-V4.1-Flash-1017",
+  messages=[{"role": "user", "content": [{"type": "text", "text": "Read the traffic sign in this image. What does it say, and what color is the sign?"}, {"type": "image_url", "image_url": {"url": "https://assets.ngc.nvidia.com/products/api-catalog/phi-3-5-vision/example1a.jpg"}}]}],
+  temperature=1,
+  top_p=0.95,
+  max_tokens=16384,
+
+  parallel_tool_calls=True,
+
+
+
+  seed=42,
+  extra_body={"chat_template_kwargs": {"enable_thinking": True}},
+  stream=True
+)
+
+for chunk in completion:
+  if not chunk.choices:
+    continue
+  reasoning = getattr(chunk.choices[0].delta, "reasoning_content", None)
+  if reasoning:
+    print(reasoning, end="")
+  if chunk.choices[0].delta.content is not None:
+    print(chunk.choices[0].delta.content, end="")
+
+```
+
+
+
+
+### AMD
+> AMD 免费调用模型有 deepseek 以及部分其他的模型，支持api调用，同时支持免费的cloud部署测试模型，需要领amd的算力卷，可以获取200个小时免费额度
+
+1. 注册官网 [地址](https://developer.amd.com.cn/)
+2. 准备一个邮箱即可以
+3. 登录申请apikey
+4. 调用模型例子
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+  base_url = "https://radeon-global.anruicloud.com/api/v1",
+  api_key = os.environ["apiKey"]
+)
+
+
+completion = client.chat.completions.create(
+  model="DeepSeek-V4.1-Flash",
+  messages=[{"role": "user", "content": [{"type": "text", "text": "Read the traffic sign in this image. What does it say, and what color is the sign?"}, {"type": "image_url", "image_url": {"url": "https://assets.ngc.nvidia.com/products/api-catalog/phi-3-5-vision/example1a.jpg"}}]}],
+  temperature=1,
+  top_p=0.95,
+  max_tokens=16384,
+
+  parallel_tool_calls=True,
+
+
+
+  seed=42,
+  extra_body={"chat_template_kwargs": {"enable_thinking": True}},
+  stream=True
+)
+
+for chunk in completion:
+  if not chunk.choices:
+    continue
+  reasoning = getattr(chunk.choices[0].delta, "reasoning_content", None)
+  if reasoning:
+    print(reasoning, end="")
+  if chunk.choices[0].delta.content is not None:
+    print(chunk.choices[0].delta.content, end="")
+
+```
+
+
 
 ### Nvidia
 > 里面有很多免费的模型，但是有不少会出现429请求问题，而且很多都是特定领域模型，不是多模态的模型，需要自己去看的调用方式，有的是sse,有的是http,不过平台有调用例子

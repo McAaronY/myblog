@@ -59,3 +59,44 @@
 | 1 | 2026-09-22 | 本机无 Ruby 3.x，无法运行 `bundle exec jekyll build` 做构建校验 | 改为静态校验（YAML front matter / Liquid 变量名 / 与主题 v7.6.0 文件结构逐字比对）+ 云端 CI 验证 |
 | 2 | 2026-09-22 | `github.com`、`rubygems.org` 直连超时，仅 `api.github.com` 可用 | 通过 GitHub Contents API 读取主题 v7.6.0 源码做规范比对，不下载/安装任何软件 |
 | 3 | 2026-09-22 | **推送失败**：`git push` 报 `Failed to connect to github.com port 443`。原因：`/etc/hosts` 里有 2026-07-20 生成的 GitHub 加速条目，但**缺少 `github.com` 本身**，解析到 20.205.243.166 且 443 端口不互通（已验证 4 个候选 IP 均 000）；`api.github.com`/`codeload.github.com` 因 hosts 里有映射而正常 | 不改系统文件、不关 TLS 校验；改用已验证可用的 SSH 通道一次性推送：`git push git@github.com:McAaronY/myblog.git main:main`（origin 保持 https 不变）。预防措施：让 GitHub 加速工具重新生成 hosts（需用户 sudo），或将 origin 改为 `git@github.com:McAaronY/myblog.git`（需用户确认） |
+
+---
+
+## T-002 完善 Cloudflare 文章（介绍 / Workers & Pages / 域名代理与证书）
+
+- **时间**：2026-11-19 CST
+- **需求**：完善 `_posts/2026-11-19-clouflare.md`，覆盖 1) Cloudflare 介绍 2) Workers 与 Pages 的具体使用 3) 域名代理与证书
+- **状态**：进行中 → 待测试（内容已写完，构建校验受本机 Ruby 版本限制）
+
+### 做了什么
+
+| # | 内容 | 说明 |
+| --- | --- | --- |
+| 1 | 重写 front matter | 标题改为「Cloudflare 实战：域名托管、Workers / Pages 与证书」，`categories: [Cloudflare]`，纠正原 `cloudfrare` / `cloudfrare` 拼写错误 |
+| 2 | 第 1 节 介绍 | 反向代理 + 权威 DNS + 边缘计算定位、请求链路、免费额度表、不适用场景 |
+| 3 | 第 2 节 域名接入 | Full setup 改 NS 流程、Full vs Partial(CNAME) 接入、橙云/灰云行为对比表 |
+| 4 | 第 3 节 代理副作用 | `CF-Connecting-IP` 取真实 IP、Nginx `real_ip` 片段、源站防直连三招 |
+| 5 | 第 4 节 Workers | C3 脚手架、wrangler 命令、fetch 处理器示例、KV 绑定、custom_domain、免费额度与 1027/1102 报错 |
+| 6 | 第 5 节 Pages | Git 集成（本站 Jekyll 构建参数表）、Direct Upload、Functions 路由、`_headers`/`_redirects`、Pages 与 Workers 选型表 |
+| 7 | 第 6 节 证书 | 两条链路图、Universal SSL（90 天 / 一级子域 / CAA）、加密模式表、Origin CA vs Let's Encrypt、Always Use HTTPS / HSTS 等开关 |
+| 8 | 第 7 节 报错对照 | 525 / 526 / 522 / 524 / 重定向循环 / 深度子域证书 / 1027 / 1102 |
+| 9 | 第 8 节 本站落地 | 域名托管 + Pages + Full (strict) 的最小组合清单；附官方文档参考链接 |
+
+### 核对来源（均为 2026-11 抓取的官方文档）
+
+- `workers/platform/limits`、`pages/platform/limits`：请求 / CPU / 构建 / 文件数 / 自定义域上限
+- `dns/proxy-status`、`dns/zone-setups/full-setup/setup`：代理状态与接入流程
+- `ssl/edge-certificates/universal-ssl`、`ssl/reference/certificate-validity-periods`、`ssl/origin-configuration/ssl-modes`、`ssl/origin-configuration/origin-ca`、`ssl/edge-certificates/additional-options/total-tls`
+- `pages/framework-guides/deploy-a-jekyll-site`、`workers/get-started/guide`、`workers/configuration/routing/custom-domains`、`fundamentals/reference/http-headers`、`kv/platform/limits`
+
+### 待测试 / 验证
+
+- [x] 静态校验：front matter 结构、代码围栏配对（22 个标记）、`{: .prompt-* }` 类型合法（tip/warning/danger/info）、无残留 Liquid 语法、无行尾空格与制表符
+- [ ] **未执行 `jekyll build`**：本机仅 Ruby 2.6.10 且无 jekyll gem（同 T-001 异常 1），需在 DevContainer / GitHub Actions 上确认页面渲染与表格、提示块样式正常
+- [ ] 待用户确认文中「本站落地」一节是否要按实际域名（当前仍是 `mcaarony.github.io/myblog`）调整
+
+### 异常记录
+
+| 次数 | 时间 | 异常 | 处理 |
+| --- | --- | --- | --- |
+| 1 | 2026-11-19 | 本机无 jekyll / Ruby 3.1，无法构建校验 | 用脚本做 front matter、围栏、prompt 块、Liquid 残留的静态检查，构建交给 CI |

@@ -10,6 +10,15 @@ Cloudflare 一句话概括：**它站在你的网站门口，替你把「加速�
 本文按新手容易上手的顺序讲：先看懂它站在哪 → 把域名交过去 → 决定哪些流量走它 → 用它跑代码和放静态站 → 最后把证书配好。
 文中数字都按 2026 年 11 月的官方文档核对过，动手前建议再扫一眼对应页面。
 
+Cloudflare 的官方入口就这几个，后面用到时不再重复：
+
+| 用途 | 官方地址 |
+| --- | --- |
+| 官网、套餐对比 | [www.cloudflare.com](https://www.cloudflare.com/){:target="_blank" rel="noopener"} |
+| 控制台（注册、DNS、Workers、Pages 都在这里） | [dash.cloudflare.com](https://dash.cloudflare.com/){:target="_blank" rel="noopener"} |
+| 开发文档（本文数字的来源） | [developers.cloudflare.com](https://developers.cloudflare.com/){:target="_blank" rel="noopener"} |
+| 运行状态（排障先看一眼是不是官方故障） | [www.cloudflarestatus.com](https://www.cloudflarestatus.com/){:target="_blank" rel="noopener"} |
+
 ## 0. 先建立直觉：Cloudflare 站在哪
 
 假设你在家里的一台旧电脑上跑了个博客，地址是 `http://1.2.3.4:8080`。
@@ -67,7 +76,7 @@ flowchart LR
 
 具体操作（5 分钟能做完）：
 
-1. 注册 Cloudflare 账号，点 **Add a domain**，填根域 `example.com`（不是 `blog.example.com`）。
+1. 到 [dash.cloudflare.com](https://dash.cloudflare.com/){:target="_blank" rel="noopener"} 注册账号，点 **Add a domain**，填根域 `example.com`（不是 `blog.example.com`）。
 2. 选套餐，先用 **Free**。
 3. Cloudflare 会自动扫描你现有的解析记录，扫漏的手工补上（尤其是 MX 邮箱记录，漏了会收不到邮件）。
 4. 去域名注册商后台，把 NS 改成 Cloudflare 给你的两个地址，形如 `xxx.ns.cloudflare.com`。

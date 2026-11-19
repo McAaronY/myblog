@@ -175,3 +175,9 @@
 - [x] 通读主题 `post.html`：`license.template` 仅出现在该 `{% if %}` 及其内部，`home.html` / `footer.html` 无引用
 - [ ] 未执行 `jekyll build`（本机 Ruby 2.6.10 且无 jekyll gem），实际页面需 CI 部署后确认
 - [ ] 已知范围限制：本次只覆盖 `zh-CN` locale；若以后有 `lang: en` 的文章，需在 `_data/locales/en.yml` 做同样处理
+
+### T-004 补充（2026-11-19）
+
+- 需求：`license.name` 改为 `arron`，`license.link` 改为 `https://yyl202248.ch.eu.org/`
+- 处理：按需求修改两值，未改动 `template: false`，因此该行当前仍不渲染
+- 待确认：站点其他位置署名是 `Aaron(Yang)`，此处按用户原文写的 `arron`，需要统一时再改

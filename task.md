@@ -144,3 +144,34 @@
 - 需求：介绍部分要给出 Cloudflare 的官方域名/入口
 - 处理：开头新增「官方入口」小表（官网、控制台、开发文档、状态页），第 2 节注册步骤直接链接控制台；未恢复文末「参考资料」一节
 - 验证：四个域名均实测可访问（`dash.cloudflare.com` 对脚本返回 403 是其自身 WAF 拦截，浏览器正常）；结构检查通过（围栏 32 个配对、7 个 mermaid 块、无 Liquid 残留、无行尾空格）
+
+---
+
+## T-004 移除文章末尾的 CC BY 4.0 授权行
+
+- **时间**：2026-11-19 CST
+- **需求**：文章底部出现「本文由作者按照 CC BY 4.0 进行授权」，要求移除
+- **状态**：待测试
+
+### 原因
+
+该行由主题 `_layouts/post.html` 的 `post-tail-bottom` 无条件渲染，条件是
+`{% if site.data.locales[lang].copyright.license.template %}`，
+文案来自 `_data/locales/zh-CN.yml`（2026-09-22 提交 `124f2ce` 加入），与文章内容无关。
+
+已用已部署的老文章核对：`https://yyl202248.ch.eu.org/posts/AI-agent/` 同样存在该行，
+说明不是本次新增文章带来的变化。
+
+### 处理
+
+- `_data/locales/zh-CN.yml`：`copyright.license.template` 改为 `false`
+- 关键坑：**不能留空、也不能删掉 license 段**。Jekyll `Utils#merge_values` 中
+  `if new_val.nil? then old_val`，站点值为 nil 会回退到主题字符串；只有 `false` 能真正覆盖。
+- 未动分享图标（`_data/share.yml`），如需一并移除再单独改
+
+### 验证
+
+- [x] `ruby -ryaml` 解析确认 `template` 为 `FalseClass`（Liquid 中 false 为假 → 整块跳过）
+- [x] 通读主题 `post.html`：`license.template` 仅出现在该 `{% if %}` 及其内部，`home.html` / `footer.html` 无引用
+- [ ] 未执行 `jekyll build`（本机 Ruby 2.6.10 且无 jekyll gem），实际页面需 CI 部署后确认
+- [ ] 已知范围限制：本次只覆盖 `zh-CN` locale；若以后有 `lang: en` 的文章，需在 `_data/locales/en.yml` 做同样处理

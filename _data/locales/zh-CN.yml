@@ -28,9 +28,11 @@ panel:
   toc: 文章内容
 
 copyright:
-  # Shown at the bottom of the post
+  # 文章末尾的授权行（“本文由作者按照 CC BY 4.0 进行授权”）已关闭。
+  # 注意必须写 false，不能留空也不能删掉 license 段：
+  # Jekyll 合并主题数据时，站点值若为 nil 会回退到主题的字符串，只有 false 才能真正覆盖。
   license:
-    template: 本文由作者按照 :LICENSE_NAME 进行授权
+    template: false
     name: CC BY 4.0
     link: https://creativecommons.org/licenses/by/4.0/
 
